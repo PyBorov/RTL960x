@@ -84,6 +84,7 @@ Join us in enhancing this RTL960x documentation repository to support the xPON c
 11. SPI/EEPROM Programming 
     * [SPI Flash & EEPROM](https://github.com/Anime4000/RTL960x/discussions/286)
     * [SFP EEPROM for 2.5G AutoNeg](https://github.com/Anime4000/RTL960x/discussions/250) <sup>Linux host need this for 2.5G mode if not hacking kernel</sup>
+12. [Для Казахтелекома](Docs/KT.md)
 
 For those interested in learning more about the inner workings of PON technology, [**Hack-Gpon.org**](https://hack-gpon.org/) offers extensive resources, tools, and guides for in-depth study. It’s a great resource if you’re ready to dive into the technical details and explore the complexities of GPON—a true rabbit hole of learning!
 
