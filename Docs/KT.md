@@ -15,7 +15,7 @@
 | Переменная            | Описание |
 |-------|----------|
 | ELAN_MAC_ADDR         | ваш мак |
-| MAC_KEY               | ключ на основе вашего мака, получается с помощбю комманды: `echo -n "hsgq1.9aВАШ_МАК_БОЛЬШИМИ_БУКВАМИ" | md5sum` |
+| MAC_KEY               | ключ на основе вашего мака, получается с помощбю комманды: `echo -n "hsgq1.9aВАШ_МАК_БОЛЬШИМИ_БУКВАМИ" \| md5sum` |
 | HW_SERIAL_NO          | ваш Серийный номер формата: `ALCL123456AA` |
 | GPON_SN               | ваш Серийный номер формата: `ALCL123456AA` |
 | HW_CWMP_MANUFACTURER  | Производитель терминала, напрмер `ALCL` для Nokia/Alcatel |
@@ -29,6 +29,9 @@
 | OMCI_FAKE_OK          | Может ли быть получен поддельный статус O5, где `1` это да а `0` нет |
 | OMCI_SW_VER1          | Версия прошивки вашего терминала, например `3AB12345CDEF67` |
 | OMCI_SW_VER2          | Версия прошивки вашего терминала, например `3AB12345CDEF67` |
+| LAN_SDS_MODE          | Про этот параметр лучше почитать [тут](https://github.com/PyBorov/RTL960x/blob/main/Docs/FLASH_GETSET_INFO.md#lan_sds_mode). У меня установлено значение `1`, другие не проверял так как не было нужды |
+| OMCI_OLT_MODE         | Я так понял это настройки взаимодействия ONT c OLT (вроде как влияет на какие конфиги и как использовать), необходимо установить значение: `3` |
+| DEVICE_TYPE           | хотя [тут](https://github.com/PyBorov/RTL960x/blob/main/Docs/FLASH_GETSET_INFO.md#device_type) говорится что для нашего стика значение `1`, нам нужно `0` |
 
 
 
@@ -49,6 +52,9 @@ flash set GPON_PLOAM_PASSWD 44454641554C54
 flash set OMCI_FAKE_OK 1
 flash set OMCI_SW_VER1 3AB12345CDEF67
 flash set OMCI_SW_VER2 3AB12345CDEF67
+flash set LAN_SDS_MODE 1
+flash set OMCI_OLT_MODE 3
+flash set DEVICE_TYPE 0
 ```
 
 На своем роутере так же необходимо указать VLAN подключения, по стандарту это `40` но может и меняться
