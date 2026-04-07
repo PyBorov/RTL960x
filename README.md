@@ -1,4 +1,4 @@
-# Hacking [RTL960x](https://www.google.com/search?q=rtl9601ci+datasheet)
+# Hacking RTL960x
 
 ## ⚠️ WARNING: SERIOUS RISKS WITH CUSTOM GPON SFP ONTs
 When using custom **GPON SFP ONTs** (Small Form-factor Pluggable Optical Network Terminals), it’s important to be aware of potential risks and how they can affect not only your connection but also others on the same network.
@@ -19,23 +19,40 @@ Using custom GPON SFP ONTs can cause severe network issues, not just for you but
 </a>
 
 Join us in enhancing this RTL960x documentation repository to support the xPON community. Every piece of information, no matter how small, can make a significant impact on others. Got spare knowledge about ONU Box functionalities? Share it by dumping the [information here](Docs/Stock_ONU.md)! Together, let's make xPON more accessible and straightforward!
-## RTL960x Family
-| Stick | SoC | NAND | Mode | 4-port `EthUni` | 2.5Gb |
-|-------|-----|------|------|-----------------|-------|
-| VSOL V2801F | `RTL9601CI` | 8MiB | VEIP & PPTP | Forced All | MOD |
-| T&W TWCGPON657 | `RTL9601CI` | 16MiB | VEIP & PPTP | [`V1.9.0-240204`](Firmware/TWCGPON657/TWCGPON657_V1.9.0-240204.tar) | MOD |
-| Ubiquiti UFiber Instant | `RTL9601CI` | 8MiB | PPTP | LAN 1 | NO |
-| ODI DFP-34X-2C2 (UPC) | `RTL9601D` | 8MiB | VEIP & PPTP | Selective All | YES |
-| ODI DFP-34X-2C3 (APC) | `RTL9601D` | 8MiB | VEIP & PPTP | Selective All | YES |
-| [Nokia G-010S-Q](https://github.com/Anime4000/RTL960x/issues/52#issuecomment-1208424756) | `RTL9601CI` | 16MiB | PPTP | NO | NO |
+## RTL9601x Device's
+| Stick | SoC | NAND | Mode | 4-port `EthUni` | 2.5Gb | EoL |
+|-------|-----|------|------|-----------------|-------|-----|
+| VSOL V2801F | `RTL9601CI` | 8MiB | VEIP & PPTP | Forced All | MOD | ✅ |
+| T&W TWCGPON657 | `RTL9601CI` | 16MiB | VEIP & PPTP | [`V1.9.0-240204`](Firmware/TWCGPON657/TWCGPON657_V1.9.0-240204.tar) | MOD | ✅ |
+| UFiber Instant | `RTL9601CI` | 8MiB | PPTP | LAN 1 | NO | ✅ |
+| DFP-34X-2C2 (A/UPC) | `RTL9601D` | 8MiB | VEIP & PPTP | Selective All | YES | ✅ |
+| [Nokia G-010S-Q](https://github.com/Anime4000/RTL960x/issues/52#issuecomment-1208424756) | `RTL9601CI` | 16MiB | PPTP | NO | NO | ❓ |
+> [!NOTE]
+> OEM no plan to release new firmware, up to the private community build's V2.0 (which illegal to release publicly)
 
-## Non-RTL960x GPON
-| Device              | Mode     | SoC          | NAND | UNI        | 4-port `EthUni` |
-|---------------------|----------|--------------|------|------------|-----------------|
-| ODI DFP-34X-2C2     | GPON SFP | ZTE          | ?    | PPTP/VEIP | NO, NO OMCI EDIT |
-| Huawei MA5671a      | GPON SFP | Lantiq | 16MiB | PPTP/VEIP | LAN 1 |
-| Nokia G-010S-P      | GPON SFP | Lantiq | 16MiB | PPTP/VEIP | LAN 1 |
-| Nokia G-010S-A      | GPON SFP | Lantiq | 16MiB | PPTP/VEIP | LAN 1 |
+## RTL960x Family
+| CPU       | Arch  | Type    | Info |
+|-----------|-------|---------|------|
+| RTL9601B  | Lexra | SFU     | First generation GPON ONT on SFP, 1G only |
+| RTL9601C1 | Lexra | SFU     | 2nd generation GPON ONT on SFP, 1G and partial 2.5G |
+| RTL9601D  | Lexra | SFU/HGU | 3rd generation GPON ONT on SFP, Stable 2.5G |
+| RTL9602C  | Lexra | SFU/HGU | Only available on Box form factor |
+| RTL9603C  | MIPS  | SFU/HGU | AIO unit, 1 Core & 900MHz CPU |
+| RTL9607C  | MIPS  | SFU/HGU | AIO unit, 2 Core & 1.15Ghz CPU, USB and POTS included |
+| RTL9607DQ | ARM64 | SFU/HGU | AIO unit, 4 Core & 1GHz CPU, optional 2.5GbE and POTS |
+| RTL9607F  | ARM64 | SFU/HGU | AIO unit, 2 Core & 1Ghz CPU, optional USB and POTS |
+
+*Here list known RTL960x PON based router/bridge*
+
+## Other GPON
+| Device              | Mode     | SoC          | NAND | UNI        | 4-port `EthUni` | EoL |
+|---------------------|----------|--------------|------|------------|-----------------|-----|
+| DFP-34X-2C2         | GPON SFP | ZTE          | ?    | PPTP/VEIP | NO, NO OMCI EDIT | ✅ |
+| Huawei MA5671a      | GPON SFP | Lantiq | 16MiB | PPTP/VEIP | LAN 1 | ✅ |
+| Nokia G-010S-P      | GPON SFP | Lantiq | 16MiB | PPTP/VEIP | LAN 1 | ✅ |
+| Nokia G-010S-A      | GPON SFP | Lantiq | 16MiB | PPTP/VEIP | LAN 1 | ✅ |
+> [!NOTE]
+> Lantiq SFP are used/2nd hand, has limited OLT Support, even OLT Stick rejecting it
 
 ## 10G xPON ONU
 | Stick               | Mode     | SoC       | NAND | Mode | 4-port `EthUni` |
@@ -118,7 +135,7 @@ Many ISPs use PPTP to bind specific LAN ports to different service providers, al
 However, this multi-ISP setup can pose issues for PON Sticks, as they might struggle to bridge VLANs on any port other than LAN 1. This limitation occurs because PPTP configurations, along with the Forwarding Operation (FwdOp), are often designed specifically for ONTs and may not be fully recognized by PON sticks. Some advanced setups attempt to resolve this by using an HGU MIB file to "trick" the OLT (Optical Line Terminal) into accepting the ME 84 and ME 171 operations, allowing better compatibility.
 
 # Fake O5 State
-Some OLTs from manufacturers like Calix and Nokia, which support Universal ONU, may provide a “false O5” state, which can be misleading. A device might reach the O5 state (the operational stage where data transmission typically begins) even with incorrect Serial Number or PLOAM Password. In this scenario, the OLT might allow the connection to reach O5 but won’t actually push any VLAN configurations (typically ME 84 & ME 171).
+Some OLTs from manufacturers like Fiberhome, Calix and Nokia, which support Universal ONU, may provide a “false O5” state, which can be misleading. A device might reach the O5 state (the operational stage where data transmission typically begins) even with incorrect Serial Number or PLOAM Password. In this scenario, the OLT might allow the connection to reach O5 but won’t actually push any VLAN configurations (typically ME 84 & ME 171).
 
 To resolve this, double-check all configuration parameters, including the serial number and password. If the connection still doesn’t work after verification, the OLT may be requiring Vendor-Specific Managed Entities (ME) (IDs 350-399) which are sometimes mandated by ISPs for authentication or additional configuration.
 
